@@ -1,0 +1,19 @@
+{
+  "name": "skeleton-theme",
+  "description": "Skeleton theme",
+  "version": "1.0.0",
+  "homepage": "http://example.com",
+  "author": "AUTHOR",
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.5.0",
+    "grunt-contrib-uglify": "~0.4.0",
+    "grunt-contrib-watch": "~0.6.0",
+    "grunt-contrib-less": "~0.10.0",
+    "grunt-html-build": "~0.3.2",
+    "grunt-contrib-connect": "~0.7.1",
+    "load-grunt-tasks": "~0.4.0"
+  }
+}
