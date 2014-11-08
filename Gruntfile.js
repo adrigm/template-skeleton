@@ -88,7 +88,7 @@ module.exports = function(grunt) {
 				recursive: true,
 				process: true,
 				data: {
-					assetPath: '<%= assetPath %>'
+					assetPath: 'assets'
 				}
 			},
 			dist: {
