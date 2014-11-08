@@ -1,0 +1,8 @@
+{
+	"team": [],
+	"site": {
+		"Version": "<%= pkg.version %>",
+		"Components": "jQuery, Bootstrap",
+		"IDE": "Sublime Text"
+	}
+}
