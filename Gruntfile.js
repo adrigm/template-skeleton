@@ -61,8 +61,19 @@ module.exports = function(grunt) {
 					},
 				],
 			},
-			fonts: {
+			vendor: {
 				files: [
+					{
+						expand: true,
+						flatten: true,
+						src: [
+							'bower_components/jquery/dist/jquery.min.js',
+							'bower_components/bootstrap/dist/js/bootstrap.min.js',
+							'bower_components/html5shiv/dist/html5shiv.js',
+							'bower_components/respond/dest/respond.min.js',
+						],
+						dest: '<%= assetPath %>/js/'
+					},
 					{
 						expand: true,
 						flatten: true,
