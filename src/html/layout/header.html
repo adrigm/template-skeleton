@@ -5,11 +5,14 @@
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sitebuild Skeleton</title>
-	<link rel="stylesheet" href="<%= assetPath %>/css/style.min.css">
+	<link rel="stylesheet" href="<%= path.asset %>/css/style.min.css">
 	<link rel="author" href="humans.txt">
+
+	<!-- build:include header/icons.html --><!-- /build -->
+
 	<!--[if lt IE 9]>
-		<script src="<%= assetPath %>/js/respond.min.js"></script>
-		<script src="<%= assetPath %>/js/html5shiv.min.js"></script>
+		<script src="<%= path.asset %>/js/respond.min.js"></script>
+		<script src="<%= path.asset %>/js/html5shiv.min.js"></script>
 	<![endif]-->
 </head>
 <body>

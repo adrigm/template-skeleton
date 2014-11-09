@@ -1,11 +1,14 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		distPath: 'dist',
-		assetPath: '<%= distPath %>/assets',
+		path: {
+			dist: 'dist',
+			asset: 'assets',
+			icon: '<%= path.asset %>/icons'
+		},
 
 		clean: {
-			dist: '<%= distPath %>'
+			dist: '<%= path.dist %>'
 		},
 		less: {
 			development: {
@@ -14,10 +17,10 @@ module.exports = function(grunt) {
 					sourceMap: true,
 					outputSourceFiles: true,
 					sourceMapURL: 'style.css.map',
-					sourceMapFilename: '<%= assetPath %>/css/style.css.map',
+					sourceMapFilename: '<%= path.dist %>/<%= path.asset %>/css/style.css.map',
 				},
 				files: {
-					'<%= assetPath %>/css/style.css': 'src/less/style.less',
+					'<%= path.dist %>/<%= path.asset %>/css/style.css': 'src/less/style.less',
 				},
 			},
 			minified: {
@@ -26,7 +29,7 @@ module.exports = function(grunt) {
 					report: 'min',
 				},
 				files: {
-					'<%= assetPath %>/css/style.min.css': '<%= assetPath %>/css/style.css',
+					'<%= path.dist %>/<%= path.asset %>/css/style.min.css': '<%= path.dist %>/<%= path.asset %>/css/style.css',
 				},
 			},
 		},
@@ -36,7 +39,7 @@ module.exports = function(grunt) {
 			},
 			javascript: {
 				src: 'src/js/main.js',
-				dest: '<%= assetPath %>/js/main.js',
+				dest: '<%= path.dist %>/<%= path.asset %>/js/main.js',
 			},
 		},
 		uglify: {
@@ -46,7 +49,7 @@ module.exports = function(grunt) {
 			},
 			frontend: {
 				files: {
-					'<%= assetPath %>/js/main.min.js': '<%= assetPath %>/js/main.js',
+					'<%= path.dist %>/<%= path.asset %>/js/main.min.js': '<%= path.dist %>/<%= path.asset %>/js/main.js',
 				},
 			},
 		},
@@ -57,7 +60,7 @@ module.exports = function(grunt) {
 						expand:true,
 						cwd: 'src/',
 						src:['fonts/**', 'img/**'],
-						dest:'<%= assetPath %>/',
+						dest:'<%= path.dist %>/<%= path.asset %>/',
 					},
 				],
 			},
@@ -72,13 +75,13 @@ module.exports = function(grunt) {
 							'bower_components/html5shiv/dist/html5shiv.js',
 							'bower_components/respond/dest/respond.min.js',
 						],
-						dest: '<%= assetPath %>/js/'
+						dest: '<%= path.dist %>/<%= path.asset %>/js/'
 					},
 					{
 						expand: true,
 						flatten: true,
 						src: 'bower_components/bootstrap/dist/fonts/*',
-						dest: '<%= assetPath %>/fonts/',
+						dest: '<%= path.dist %>/<%= path.asset %>/fonts/',
 					},
 				],
 			},
@@ -88,8 +91,11 @@ module.exports = function(grunt) {
 				recursive: true,
 				process: true,
 				data: {
-					assetPath: 'assets'
-				}
+					path: {
+						asset: '<%= path.asset %>',
+						icon: '<%= path.icon %>'
+					},
+				},
 			},
 			dist: {
 				files:[
@@ -97,13 +103,13 @@ module.exports = function(grunt) {
 						expand: true,
 						flatten: true,
 						src: 'src/html/*.html',
-						dest: '<%= distPath %>/'
+						dest: '<%= path.dist %>/'
 					}
 				]
 			}
 		},
 		jsbeautifier: {
-			files : ['<%= distPath %>/*.html'],
+			files : ['<%= path.dist %>/*.html'],
 		},
 		humans_txt: {
 			options: {
@@ -113,8 +119,23 @@ module.exports = function(grunt) {
 				content: grunt.file.readJSON('src/humans.json'),
 			},
 			files: {
-				dest: '<%= distPath %>/humans.txt',
+				dest: '<%= path.dist %>/humans.txt',
 			},
+		},
+		favicons: {
+			options: {
+				trueColor: true,
+				precomposed: true,
+				appleTouchBackgroundColor: 'auto',
+				coast: true,
+				windowsTile: true,
+				tileBlackWhite: false,
+				tileColor: 'auto',
+			},
+			dist: {
+				src: 'src/favicon.png',
+				dest: '<%= path.dist %>/<%= path.icon %>',
+			}
 		},
 		watch: {
 			options: {
@@ -138,7 +159,7 @@ module.exports = function(grunt) {
 				options: {
 					livereload: true,
 					port: 9000,
-					base: '<%= distPath %>'
+					base: '<%= path.dist %>'
 				}
 			}
 		},
@@ -148,7 +169,8 @@ module.exports = function(grunt) {
 
 	// Task definition
 	grunt.registerTask('assets', ['less', 'concat', 'uglify', 'copy']);
-	grunt.registerTask('dist', ['clean', 'assets', 'processhtml', 'humans_txt']);
+	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
+	grunt.registerTask('dist', ['clean', 'assets', 'html', 'humans_txt', 'favicons']);
 	grunt.registerTask('work', ['connect', 'watch']);
 	grunt.registerTask('default', 'dist');
 };
