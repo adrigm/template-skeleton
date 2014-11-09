@@ -19,6 +19,7 @@
 		"grunt-contrib-uglify": "~0.6.0",
 		"grunt-contrib-watch": "~0.6.0",
 		"grunt-favicons": "latest",
+		"grunt-firefox-manifest": "~0.1.0",
 		"grunt-humans-txt": "latest",
 		"grunt-jsbeautifier": "~0.2.0",
 		"grunt-processhtml": "~0.3.0",

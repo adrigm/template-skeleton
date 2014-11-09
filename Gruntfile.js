@@ -131,12 +131,21 @@ module.exports = function(grunt) {
 				windowsTile: true,
 				tileBlackWhite: false,
 				tileColor: 'auto',
-				firefoxManifest: '<%= path.dist %>/manifest.webapp'
+				HTMLPrefix: '<%= path.icon %>/',
+				firefox: true,
+				firefoxManifest: '<%= path.dist %>/manifest.webapp',
 			},
 			dist: {
 				src: 'src/favicon.png',
 				dest: '<%= path.dist %>/<%= path.icon %>',
 			}
+		},
+		firefoxManifest: {
+			dist: {
+				options: {
+					manifest: '<%= path.dist %>/manifest.webapp',
+				},
+			},
 		},
 		watch: {
 			options: {
@@ -171,7 +180,7 @@ module.exports = function(grunt) {
 	// Task definition
 	grunt.registerTask('assets', ['less', 'concat', 'uglify', 'copy']);
 	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
-	grunt.registerTask('dist', ['clean', 'assets', 'html', 'humans_txt', 'favicons']);
+	grunt.registerTask('dist', ['clean', 'assets', 'html', 'humans_txt', 'firefoxManifest', 'favicons']);
 	grunt.registerTask('work', ['connect', 'watch']);
 	grunt.registerTask('default', 'dist');
 };
