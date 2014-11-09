@@ -4,11 +4,10 @@ module.exports = function(grunt) {
 		path: {
 			dist: 'dist',
 			asset: 'assets',
-			icon: '<%= path.asset %>/icons'
+			icon: '<%= path.asset %>/icons',
 		},
-
 		clean: {
-			dist: '<%= path.dist %>'
+			dist: '<%= path.dist %>',
 		},
 		less: {
 			dist: {
@@ -70,7 +69,7 @@ module.exports = function(grunt) {
 							'bower_components/html5shiv/dist/html5shiv.js',
 							'bower_components/respond/dest/respond.min.js',
 						],
-						dest: '<%= path.dist %>/<%= path.asset %>/js/lib/'
+						dest: '<%= path.dist %>/<%= path.asset %>/js/lib/',
 					},
 					{
 						expand: true,
@@ -88,7 +87,7 @@ module.exports = function(grunt) {
 				data: {
 					path: {
 						asset: '<%= path.asset %>',
-						icon: '<%= path.icon %>'
+						icon: '<%= path.icon %>',
 					},
 				},
 			},
@@ -98,10 +97,10 @@ module.exports = function(grunt) {
 						expand: true,
 						flatten: true,
 						src: 'src/html/*.html',
-						dest: '<%= path.dist %>/'
-					}
-				]
-			}
+						dest: '<%= path.dist %>/',
+					},
+				],
+			},
 		},
 		jsbeautifier: {
 			files : ['<%= path.dist %>/*.html'],
@@ -170,7 +169,7 @@ module.exports = function(grunt) {
 			},
 			js: {
 				files: 'src/js/*.js',
-				tasks: ['concat', 'uglify'],
+				tasks: 'uglify',
 			},
 		},
 		connect: {
@@ -178,9 +177,9 @@ module.exports = function(grunt) {
 				options: {
 					livereload: true,
 					port: 9000,
-					base: '<%= path.dist %>'
-				}
-			}
+					base: '<%= path.dist %>',
+				},
+			},
 		},
 	});
 
