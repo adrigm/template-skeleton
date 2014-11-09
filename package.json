@@ -22,6 +22,7 @@
 		"grunt-firefox-manifest": "~0.1.0",
 		"grunt-humans-txt": "latest",
 		"grunt-jsbeautifier": "~0.2.0",
+		"grunt-manifest": "latest",
 		"grunt-processhtml": "~0.3.0",
 		"load-grunt-tasks": "~1.0.0"
 	}

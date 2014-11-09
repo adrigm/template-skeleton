@@ -75,7 +75,7 @@ module.exports = function(grunt) {
 							'bower_components/html5shiv/dist/html5shiv.js',
 							'bower_components/respond/dest/respond.min.js',
 						],
-						dest: '<%= path.dist %>/<%= path.asset %>/js/'
+						dest: '<%= path.dist %>/<%= path.asset %>/js/lib/'
 					},
 					{
 						expand: true,
@@ -138,13 +138,27 @@ module.exports = function(grunt) {
 			dist: {
 				src: 'src/favicon.png',
 				dest: '<%= path.dist %>/<%= path.icon %>',
-			}
+			},
 		},
 		firefoxManifest: {
 			dist: {
 				options: {
 					manifest: '<%= path.dist %>/manifest.webapp',
 				},
+			},
+		},
+		manifest: {
+			dist: {
+				options: {
+					basePath: '<%= path.dist %>/',
+					network: ['http://*', 'https://*'],
+					fallback: ['/ /offline.html'],
+				},
+				src: [
+					'<%= path.asset %>/css/*.css',
+					'<%= path.asset %>/js/*.js',
+				],
+				dest: '<%= path.dist %>/manifest.appcache',
 			},
 		},
 		watch: {
@@ -180,7 +194,8 @@ module.exports = function(grunt) {
 	// Task definition
 	grunt.registerTask('assets', ['less', 'concat', 'uglify', 'copy']);
 	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
-	grunt.registerTask('dist', ['clean', 'assets', 'html', 'humans_txt', 'firefoxManifest', 'favicons']);
+	grunt.registerTask('misc', ['humans_txt', 'firefoxManifest', 'favicons', 'manifest']);
+	grunt.registerTask('dist', ['clean', 'assets', 'html', 'misc']);
 	grunt.registerTask('work', ['connect', 'watch']);
 	grunt.registerTask('default', 'dist');
 };
