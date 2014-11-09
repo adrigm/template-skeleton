@@ -131,6 +131,7 @@ module.exports = function(grunt) {
 				windowsTile: true,
 				tileBlackWhite: false,
 				tileColor: 'auto',
+				firefoxManifest: '<%= path.dist %>/manifest.webapp'
 			},
 			dist: {
 				src: 'src/favicon.png',
