@@ -11,7 +11,7 @@ module.exports = function(grunt) {
 			dist: '<%= path.dist %>'
 		},
 		less: {
-			development: {
+			dist: {
 				options: {
 					comporess: true,
 					sourceMap: true,
