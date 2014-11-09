@@ -33,33 +33,28 @@ module.exports = function(grunt) {
 				},
 			},
 		},
-		concat: {
-			options: {
-				separator: ';',
-			},
-			javascript: {
-				src: 'src/js/main.js',
-				dest: '<%= path.dist %>/<%= path.asset %>/js/main.js',
-			},
-		},
 		uglify: {
 			options: {
 				mangle: false,
 				report: 'min',
 			},
-			frontend: {
-				files: {
-					'<%= path.dist %>/<%= path.asset %>/js/main.min.js': '<%= path.dist %>/<%= path.asset %>/js/main.js',
-				},
+			js: {
+				files: [{
+					expand: true,
+					cwd: 'src/js/',
+					src: '**/*.js',
+					dest: '<%= path.dist %>/<%= path.asset %>/js/',
+					ext: '.min.js',
+				}],
 			},
 		},
 		copy: {
 			assets: {
 				files: [
 					{
-						expand:true,
+						expand: true,
 						cwd: 'src/',
-						src:['fonts/**', 'img/**'],
+						src:['fonts/**', 'img/**', 'js/**'],
 						dest:'<%= path.dist %>/<%= path.asset %>/',
 					},
 				],
@@ -192,7 +187,7 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	// Task definition
-	grunt.registerTask('assets', ['less', 'concat', 'uglify', 'copy']);
+	grunt.registerTask('assets', ['less', 'uglify', 'copy']);
 	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
 	grunt.registerTask('misc', ['humans_txt', 'firefoxManifest', 'favicons', 'manifest']);
 	grunt.registerTask('dist', ['clean', 'assets', 'html', 'misc']);
