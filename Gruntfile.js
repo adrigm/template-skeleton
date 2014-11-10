@@ -155,6 +155,24 @@ module.exports = function(grunt) {
 				dest: '<%= path.dist %>/manifest.appcache',
 			},
 		},
+		modernizr: {
+			dist: {
+				devFile: 'bower_components/modernizr/modernizr.js',
+				outputFile: '<%= path.dist %>/<%= path.asset %>/js/lib/modernizr.min.js',
+				extra: {
+					"shiv" : false,
+					"mq" : true,
+				},
+				uglify: true,
+				tests: [],
+				files: {
+					src: [
+						'<%= path.dist %>/<%= path.asset %>/css/*.css',
+						'<%= path.dist %>/<%= path.asset %>/js/*.js',
+					],
+				},
+			},
+		},
 		watch: {
 			options: {
 				livereload: false,
@@ -186,7 +204,7 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	// Task definition
-	grunt.registerTask('assets', ['less', 'uglify', 'copy']);
+	grunt.registerTask('assets', ['less', 'uglify', 'copy', 'modernizr']);
 	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
 	grunt.registerTask('misc', ['humans_txt', 'firefoxManifest', 'favicons', 'manifest']);
 	grunt.registerTask('dist', ['clean', 'assets', 'html', 'misc']);
