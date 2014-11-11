@@ -17,6 +17,9 @@ module.exports = function(grunt) {
 					outputSourceFiles: true,
 					sourceMapURL: 'style.css.map',
 					sourceMapFilename: '<%= path.dist %>/<%= path.asset %>/css/style.css.map',
+					modifyVars: {
+						modernizrClass: '<%= modernizr.dist.extensibility.cssclassprefix %>',
+					},
 				},
 				files: {
 					'<%= path.dist %>/<%= path.asset %>/css/style.css': 'src/less/style.less',
@@ -160,8 +163,12 @@ module.exports = function(grunt) {
 				devFile: 'bower_components/modernizr/modernizr.js',
 				outputFile: '<%= path.dist %>/<%= path.asset %>/js/lib/modernizr.min.js',
 				extra: {
-					"shiv" : false,
-					"mq" : true,
+					shiv: false,
+					mq: true,
+					cssclasses: true,
+				},
+				extensibility: {
+					cssclassprefix: '',
 				},
 				uglify: true,
 				tests: [],
