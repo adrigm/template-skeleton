@@ -92,6 +92,7 @@ module.exports = function(grunt) {
 						asset: '<%= path.asset %>',
 						icon: '<%= path.icon %>',
 					},
+					modernizrClass: '<%= modernizr.dist.extensibility.cssclassprefix %>',
 				},
 			},
 			dist: {
