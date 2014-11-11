@@ -2,17 +2,21 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+
 	<title>Sitebuild Skeleton</title>
-	<link rel="stylesheet" href="<%= path.asset %>/css/style.min.css">
+	<meta name="description" content="">
 	<link rel="author" href="humans.txt">
+
+	<link rel="stylesheet" href="<%= path.asset %>/css/style.min.css">
 
 	<!-- build:include header/icons.html --><!-- /build -->
 
+	<script src="<%= path.asset %>/js/lib/modernizr.min.js"></script>
+
 	<!--[if lt IE 9]>
-		<script src="<%= path.asset %>/js/lib/respond.min.js"></script>
 		<script src="<%= path.asset %>/js/lib/html5shiv.min.js"></script>
+		<script src="<%= path.asset %>/js/lib/respond.min.js"></script>
 	<![endif]-->
 </head>
 <body>
