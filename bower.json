@@ -2,7 +2,7 @@
 	"name": "sitebuild-skeleton",
 	"version": "1.0.0",
 	"authors": [
-		"Barta Tamás <tamas@bartatamas.hu>",
+		"Tamás Barta <barta.tamas.d@gmail.com>",
 		"Márk Sági-Kazár <mark.sagikazar@gmail.com>"
 	],
 	"license": "MIT",
@@ -11,12 +11,9 @@
 		"**/.*",
 		"node_modules",
 		"bower_components",
-		"public/bower_components",
-		"test",
-		"tests"
 	],
 	"devDependencies": {
-		"bootstrap": "~3.2.0",
+		"bootstrap": "~3.3.1",
 		"html5shiv": "~3.7.0",
 		"modernizr": "~2.8.0",
 		"respond": "~1.4.0"
