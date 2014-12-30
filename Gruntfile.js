@@ -108,6 +108,13 @@ module.exports = function(grunt) {
 		},
 		jsbeautifier: {
 			files : ['<%= path.dist %>/*.html'],
+			options: {
+				html: {
+					indentChar: "\t",
+					indentSize: 1,
+					endWithNewline: true,
+				},
+			},
 		},
 		humans_txt: {
 			options: {
