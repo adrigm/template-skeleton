@@ -1,5 +1,7 @@
 # Template Skeleton
 
+[![Dependency Status](https://www.versioneye.com/user/projects/54b65314050646e16d0000d4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54b65314050646e16d0000d4)
+
 **This is a boilerplate repo for sitebuilds/templates.**
 
 
