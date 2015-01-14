@@ -193,7 +193,7 @@ module.exports = function(grunt) {
 				livereload: false,
 			},
 			less: {
-				files: 'src/less/*.less',
+				files: 'src/less/**/*.less',
 				tasks: 'less',
 			},
 			html: {
