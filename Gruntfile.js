@@ -223,6 +223,7 @@ module.exports = function(grunt) {
 	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
 	grunt.registerTask('misc', ['humans_txt', 'firefoxManifest', 'favicons', 'manifest']);
 	grunt.registerTask('dist', ['clean', 'assets', 'html', 'misc']);
+	grunt.registerTask('dev', ['clean', 'assets', 'html']);
 	grunt.registerTask('work', ['connect', 'watch']);
 	grunt.registerTask('default', 'dist');
 };
