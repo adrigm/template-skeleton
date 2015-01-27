@@ -1,8 +1,8 @@
-# Sitebuild Skeleton
+# Jekyll Skeleton
 
 [![Dependency Status](https://www.versioneye.com/user/projects/54b65314050646e16d0000d4/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54b65314050646e16d0000d4)
 
-**This is a boilerplate repo for sitebuilds/templates.**
+**This is a boilerplate repo for Jekyll based websites.**
 
 
 ## Usage
@@ -54,11 +54,6 @@ Some recommended libraries are installed by default:
 - HTML5 Shiv
 - Modernizr
 - Respond.js
-
-
-### HTML
-
-We use `processhtml` to generate HTML files. This lets you to create a common layout (header, nav, footer, etc.) and use it to generate the full page without repeating yourself. There is also a beautifying mechanism which makes your HTML files correctly indented. The default setting is to use tabs for indentation.
 
 
 ### Vendor files

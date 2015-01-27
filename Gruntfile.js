@@ -1,13 +1,8 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		path: {
-			dist: 'dist',
-			asset: 'assets',
-			icon: '<%= path.asset %>/icons',
-		},
 		clean: {
-			dist: '<%= path.dist %>',
+			dist: ['assets/'],
 		},
 		less: {
 			dist: {
@@ -16,13 +11,13 @@ module.exports = function(grunt) {
 					sourceMap: true,
 					outputSourceFiles: true,
 					sourceMapURL: 'style.css.map',
-					sourceMapFilename: '<%= path.dist %>/<%= path.asset %>/css/style.css.map',
+					sourceMapFilename: 'assets/css/style.css.map',
 					modifyVars: {
 						modernizrClass: '<%= modernizr.dist.extensibility.cssclassprefix %>',
 					},
 				},
 				files: {
-					'<%= path.dist %>/<%= path.asset %>/css/style.css': 'src/less/style.less',
+					'assets/css/style.css': '_src/less/style.less',
 				},
 			},
 			minified: {
@@ -31,23 +26,8 @@ module.exports = function(grunt) {
 					report: 'min',
 				},
 				files: {
-					'<%= path.dist %>/<%= path.asset %>/css/style.min.css': '<%= path.dist %>/<%= path.asset %>/css/style.css',
+					'assets/css/style.min.css': 'assets/css/style.css',
 				},
-			},
-		},
-		uglify: {
-			options: {
-				mangle: false,
-				report: 'min',
-			},
-			js: {
-				files: [{
-					expand: true,
-					cwd: 'src/js/',
-					src: '**/*.js',
-					dest: '<%= path.dist %>/<%= path.asset %>/js/',
-					ext: '.min.js',
-				}],
 			},
 		},
 		copy: {
@@ -55,9 +35,9 @@ module.exports = function(grunt) {
 				files: [
 					{
 						expand: true,
-						cwd: 'src/',
-						src:['fonts/**', 'img/**', 'js/**'],
-						dest:'<%= path.dist %>/<%= path.asset %>/',
+						cwd: '_src/',
+						src:['fonts/**', 'img/**'],
+						dest:'assets/',
 					},
 				],
 			},
@@ -72,48 +52,17 @@ module.exports = function(grunt) {
 							'bower_components/html5shiv/dist/html5shiv.js',
 							'bower_components/respond/dest/respond.min.js',
 						],
-						dest: '<%= path.dist %>/<%= path.asset %>/js/lib/',
+						dest: 'assets/js/lib/',
 					},
 					{
 						expand: true,
 						flatten: true,
-						src: 'bower_components/bootstrap/dist/fonts/*',
-						dest: '<%= path.dist %>/<%= path.asset %>/fonts/',
+						src: [
+							'bower_components/bootstrap/dist/fonts/*',
+						],
+						dest: 'assets/fonts/',
 					},
 				],
-			},
-		},
-		processhtml: {
-			options: {
-				recursive: true,
-				process: true,
-				data: {
-					path: {
-						asset: '<%= path.asset %>',
-						icon: '<%= path.icon %>',
-					},
-					modernizrClass: '<%= modernizr.dist.extensibility.cssclassprefix %>',
-				},
-			},
-			dist: {
-				files:[
-					{
-						expand: true,
-						flatten: true,
-						src: 'src/html/*.html',
-						dest: '<%= path.dist %>/',
-					},
-				],
-			},
-		},
-		jsbeautifier: {
-			files : ['<%= path.dist %>/*.html'],
-			options: {
-				html: {
-					indentChar: "\t",
-					indentSize: 1,
-					endWithNewline: true,
-				},
 			},
 		},
 		humans_txt: {
@@ -121,10 +70,10 @@ module.exports = function(grunt) {
 				intro: '<%= pkg.description %>',
 				commentStyle: 'u',
 				includeUpdateIn: 'site',
-				content: grunt.file.readJSON('src/humans.json'),
+				content: grunt.file.readJSON('_src/humans.json'),
 			},
 			files: {
-				dest: '<%= path.dist %>/humans.txt',
+				dest: 'humans.txt',
 			},
 		},
 		favicons: {
@@ -136,40 +85,40 @@ module.exports = function(grunt) {
 				windowsTile: true,
 				tileBlackWhite: true,
 				tileColor: 'none',
-				HTMLPrefix: '<%= path.icon %>/',
+				HTMLPrefix: 'assets/icons/',
 				firefox: true,
-				firefoxManifest: '<%= path.dist %>/manifest.webapp',
+				firefoxManifest: 'manifest.webapp',
 			},
 			dist: {
-				src: 'src/favicon.png',
-				dest: '<%= path.dist %>/<%= path.icon %>',
+				src: '_src/favicon.png',
+				dest: 'assets/icons/',
 			},
 		},
 		firefoxManifest: {
 			dist: {
 				options: {
-					manifest: '<%= path.dist %>/manifest.webapp',
+					manifest: 'manifest.webapp',
 				},
 			},
 		},
 		manifest: {
 			dist: {
 				options: {
-					basePath: '<%= path.dist %>/',
+					basePath: '',
 					network: ['http://*', 'https://*'],
 					fallback: ['/ /offline.html'],
 				},
 				src: [
-					'<%= path.asset %>/css/*.css',
-					'<%= path.asset %>/js/*.js',
+					'assets/css/*.css',
+					'assets/js/*.js',
 				],
-				dest: '<%= path.dist %>/manifest.appcache',
+				dest: 'manifest.appcache',
 			},
 		},
 		modernizr: {
 			dist: {
 				devFile: 'bower_components/modernizr/modernizr.js',
-				outputFile: '<%= path.dist %>/<%= path.asset %>/js/lib/modernizr.min.js',
+				outputFile: 'assets/js/lib/modernizr.min.js',
 				extra: {
 					shiv: false,
 					mq: true,
@@ -182,8 +131,8 @@ module.exports = function(grunt) {
 				tests: [],
 				files: {
 					src: [
-						'<%= path.dist %>/<%= path.asset %>/css/*.css',
-						'<%= path.dist %>/<%= path.asset %>/js/*.js',
+						'assets/css/*.css',
+						'assets/js/*.js',
 					],
 				},
 			},
@@ -193,25 +142,8 @@ module.exports = function(grunt) {
 				livereload: false,
 			},
 			less: {
-				files: 'src/less/**/*.less',
+				files: '_src/less/**/*.less',
 				tasks: 'less',
-			},
-			html: {
-				files: 'src/html/**/*.html',
-				tasks: 'processhtml',
-			},
-			js: {
-				files: 'src/js/*.js',
-				tasks: 'uglify',
-			},
-		},
-		connect: {
-			server: {
-				options: {
-					livereload: true,
-					port: 9000,
-					base: '<%= path.dist %>',
-				},
 			},
 		},
 	});
@@ -219,11 +151,10 @@ module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
 
 	// Task definition
-	grunt.registerTask('assets', ['less', 'uglify', 'copy', 'modernizr']);
-	grunt.registerTask('html', ['processhtml', 'jsbeautifier']);
+	grunt.registerTask('assets', ['less', 'copy', 'modernizr']);
 	grunt.registerTask('misc', ['humans_txt', 'firefoxManifest', 'favicons', 'manifest']);
-	grunt.registerTask('dist', ['clean', 'assets', 'html', 'misc']);
-	grunt.registerTask('dev', ['clean', 'assets', 'html']);
-	grunt.registerTask('work', ['connect', 'watch']);
+	grunt.registerTask('dist', ['clean', 'assets', 'misc']);
+	grunt.registerTask('dev', ['clean', 'assets']);
+	grunt.registerTask('work', ['watch']);
 	grunt.registerTask('default', 'dist');
 };
