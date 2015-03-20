@@ -30,7 +30,7 @@ There are three commands which a developer should use:
 
 The first one builds the whole project. You can optionally use the `dist` which is the default command.
 
-The third one builds the project without any cache, manifest, etc. files. (The difference between `dist` and `dev` is the `misc` category. For details check `Gruntfile.js`)
+The second one builds the project without any cache, manifest, etc. files. (The difference between `dist` and `dev` is the `misc` category. For details check `Gruntfile.js`)
 
 The third one does two things: starts a webserver pointing to your distribution directory and watches your source directory (`src/html/` and `src/less`) for changes and rebuilds that part of the project if anything changed. If you have livereload installed in your browser, you don't event have to reload the site.
 
