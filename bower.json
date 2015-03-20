@@ -13,7 +13,7 @@
 		"bower_components"
 	],
 	"devDependencies": {
-		"bootstrap": "3.3.2",
+		"bootstrap": "3.3.4",
 		"html5shiv": "~3.7",
 		"modernizr": "~2.8",
 		"respond": "~1.4"
